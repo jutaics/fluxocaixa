@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<title>Fluxo de Caixa</title>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="../materialize/css/materialize.min.css" media="screen,projection" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="../style/styleCss.css" />
+</head>
+<body>
+
+	<header>
+		<nav class="menu">
+			<div class="nav-wrapper">
+
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="/listarConta"
+						class="waves-effect waves-light btn"><i
+							class="material-icons left">arrow_back_ios</i>Voltar</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<center>
+		<h3 class="tituloPagina">Cadastrar Pagamento / Recebimento</h3>
+	</center>
+	<center>
+		<p>
+			<th:block th:include="mensagemValidacao"></th:block>
+		</p>
+	</center>
+
+	<div class="container formPagamento">
+
+		<center>
+			<h5 class="tituloDiv">Dados da Transacao</h5>
+		</center>
+
+
+		<form class="container" method="post">
+
+			Codigo: <input type="text" value="" name="cdTransacao"
+				placeholder="Insira o Codigo do Conta" /> Cliente / Fornecedor: <input
+				type="text" value="" name="nome"
+				placeholder="Nome Completo do Credor / Devedor " /> Item: <input
+				type="text" value="" name="item" placeholder="Nome do Item Comprado" />
+
+
+
+			<div class="row">
+
+
+				<div class="input-field col s6">
+					Forma Pagamento: <input type="text" value="" name="formaPagamento"
+						placeholder="Forma de Pagamento da Conta" />
+				</div>
+
+				<div class="input-field col s6">
+					Tipo Conta: <input type="text" value="" name="tipoConta"
+						placeholder="Tipo Conta Pagamento / Recebimento" />
+				</div>
+
+				<div class="input-field col s6">
+					Valor: <input type="text" value="" name="valor"
+						placeholder="Valor A Pagar / Receber" />
+				</div>
+
+				<div class="input-field col s6">
+					Parcela: <input type="text" value="" name="qtdParcela"
+						placeholder="Total de Parcelas" />
+				</div>
+
+
+				<div class="input-field col s4">
+					Data Vencimento: <input type="date"
+						value='th:value="${#dates.format(myDate, dateFormat)}"'
+						name="dtVencimento" placeholder="Data de Vencimento da Conta" />
+				</div>
+
+
+				<div class="input-field col s6">
+					Status: <input type="text" value="" name="status"
+						placeholder="Status da Conta Pendente / Pago" />
+				</div>
+
+			</div>
+
+			Observacao:
+			<textarea rows="20" cols="80" name="descricao"
+				placeholder="Observacao da Conta"></textarea>
+
+			<br /> <br />
+
+			<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
+			<br /> <br />
+
+		</form>
+	</div>
+
+
+
+
+
+	<div class="container formPagamento">
+
+		<center>
+			<h5 class="tituloDiv">Transacoes Cadastradas</h5>
+		</center>
+		<table class="container ">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Item</th>
+					<th>Tipo</th>
+					<th>Forma Pagamento</th>
+					<th>Vencimento</th>
+					<th>Valor</th>
+					<th>Acoes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="pagamento : ${pagamentos}">
+					<td><span th:text="${pagamento.nome}"></span></td>
+					<td><span th:text="${pagamento.item}"></span></td>
+					<td><span th:text="${pagamento.tipoConta}"></span></td>
+					<td><span th:text="${pagamento.formaPagamento}"></span></td>
+
+					<td><span th:text="${pagamento.dtVencimento}"></span></td>
+					<td>R$ <span th:text="${pagamento.valor}"></span></td>
+					<td><a class="waves-effect waves-light "
+						th:href="@{/deletarPagamento?cdTransacao={cdTransacao}(cdTransacao=${pagamento.cdTransacao})}"><i
+							class="material-icons left">delete</i></a></td>
+
+
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+</body>
+
+
+</html>

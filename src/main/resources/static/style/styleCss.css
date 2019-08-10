@@ -1,0 +1,41 @@
+.formConta {
+	box-shadow: 0px 0px 5px grey;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	margin-bottom: 60px;
+}
+
+.detalhesConta {
+	box-shadow: 0px 0px 5px grey;
+	padding-top: 20px;
+	padding-left: 20px;
+	margin-bottom: 60px;
+}
+
+.formPagamento {
+	box-shadow: 0px 0px 5px grey;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	margin-bottom: 60px;
+}
+
+.menu {
+	background-color: #2C2255;
+}
+
+.totalCredito {
+	color: #7AB900;
+}
+
+.totalDebito {
+	color: #FF2525;
+}
+
+.tituloPagina {
+	color: #9E9E9E;
+}
+
+.tituloDiv {
+	color: #000;
+	background-color: #D4D0C8;
+}
